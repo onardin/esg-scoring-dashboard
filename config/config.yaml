@@ -1,52 +1,29 @@
 # ESG Scoring Dashboard Configuration
-
-# Data Sources
-data_sources:
-  sec_edgar:
-    base_url: "https://www.sec.gov/Archives/edgar/data"
-    rate_limit: 10  # requests per second
-  
-  yahoo_finance:
-    base_url: "https://finance.yahoo.com"
-    api_key: null  # Set your API key here
-  
-  company_websites:
-    timeout: 30
-    retry_attempts: 3
-
-# Scoring Parameters
-scoring:
-  environmental:
-    carbon_weight: 0.3
-    renewable_weight: 0.25
-    resource_efficiency_weight: 0.25
-    disclosure_quality_weight: 0.2
-  
-  social:
-    diversity_weight: 0.3
-    community_impact_weight: 0.25
-    supply_chain_weight: 0.25
-    product_safety_weight: 0.2
-  
-  governance:
-    board_composition_weight: 0.3
-    executive_compensation_weight: 0.25
-    transparency_weight: 0.25
-    risk_management_weight: 0.2
-
-# Database Configuration
-database:
-  type: "sqlite"
-  path: "data/processed/esg_database.db"
-
-# Dashboard Settings
-dashboard:
-  port: 8501
-  host: "localhost"
-  theme: "light"
-
-# Logging
-logging:
-  level: "INFO"
-  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-  file: "logs/esg_dashboard.log"
+   
+   data:
+     raw_data_dir: "data/raw"
+     processed_data_dir: "data/processed"
+     external_data_dir: "data/external"
+   
+   companies:
+     target_list: ["AAPL", "MSFT", "TSLA", "GOOGL", "AMZN", "META", "NVDA", "JPM", "JNJ", "PG"]
+     max_companies_dev: 5
+   
+   apis:
+     sec_edgar:
+       rate_limit_delay: 0.1  # seconds between requests
+       max_retries: 3
+     
+     yfinance:
+       period: "5y"  # financial data lookback period
+   
+   scoring:
+     weights:
+       environmental: 0.33
+       social: 0.33  
+       governance: 0.34
+   
+   database:
+     type: "sqlite"
+     name: "esg_data.db"
+     location: "data/processed/"
