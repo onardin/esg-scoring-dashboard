@@ -1,4 +1,3 @@
-# esg-scoring-dashboard
 # ESG Scoring Dashboard
 
 A machine learning-powered dashboard that analyzes corporate Environmental, Social, and Governance (ESG) performance and correlates it with financial metrics.
