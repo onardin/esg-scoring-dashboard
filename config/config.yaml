@@ -1,0 +1,52 @@
+# ESG Scoring Dashboard Configuration
+
+# Data Sources
+data_sources:
+  sec_edgar:
+    base_url: "https://www.sec.gov/Archives/edgar/data"
+    rate_limit: 10  # requests per second
+  
+  yahoo_finance:
+    base_url: "https://finance.yahoo.com"
+    api_key: null  # Set your API key here
+  
+  company_websites:
+    timeout: 30
+    retry_attempts: 3
+
+# Scoring Parameters
+scoring:
+  environmental:
+    carbon_weight: 0.3
+    renewable_weight: 0.25
+    resource_efficiency_weight: 0.25
+    disclosure_quality_weight: 0.2
+  
+  social:
+    diversity_weight: 0.3
+    community_impact_weight: 0.25
+    supply_chain_weight: 0.25
+    product_safety_weight: 0.2
+  
+  governance:
+    board_composition_weight: 0.3
+    executive_compensation_weight: 0.25
+    transparency_weight: 0.25
+    risk_management_weight: 0.2
+
+# Database Configuration
+database:
+  type: "sqlite"
+  path: "data/processed/esg_database.db"
+
+# Dashboard Settings
+dashboard:
+  port: 8501
+  host: "localhost"
+  theme: "light"
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/esg_dashboard.log"
